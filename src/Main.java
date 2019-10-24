@@ -104,13 +104,28 @@ public class Main extends Application {
             fichiers.getItems().add(chargerImage);
             Menu actions = new Menu("Actions");
             MenuItem reint = new MenuItem("Réintialiser");
+            actions.getItems().add(reint);
+
+            Menu chargerImage2 = new Menu("Charger une image");
+            MenuItem i12 = new MenuItem("Image #1");
+            MenuItem i22 = new MenuItem("Image #2");
+            MenuItem i32 = new MenuItem("Image #3");
+
+            chargerImage2.getItems().addAll(i12, i22, i32);
+            Menu actions2 = new Menu("Actions");
+            MenuItem reint2 = new MenuItem("Réintialiser");
+            actions2.getItems().add(reint2);
+
+
+
+
 
             //LE BACKGROUD GRIS EST SPAGHETTI, JSP COMMENT METTRE SETBACKGROUND BORDERPLANE BOTTOM SEULEMENT.
             Label infoEnBas = new Label("Bienvenue sur le meilleur photoshop                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ");
             infoEnBas.setBackground(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
             infoEnBas.setTextFill(Color.BLACK);
 
-            actions.getItems().add(reint);
+
             MenuBar menu = new MenuBar(fichiers, actions);
             BorderPane borderPane = new BorderPane();
             borderPane.setTop(menu);
@@ -118,7 +133,7 @@ public class Main extends Application {
             borderPane.setBottom(infoEnBas);
 
             //Context Menu
-            ContextMenu cm = new ContextMenu(fichiers, actions);
+            ContextMenu cm = new ContextMenu(chargerImage2, actions2);
 
             Scene photoshop = new Scene(borderPane);
             photoshop.setOnContextMenuRequested(event -> cm.show(photoshop.getWindow(), event.getScreenX(), event.getScreenY()));
@@ -134,6 +149,20 @@ public class Main extends Application {
                 infoEnBas.setText("Image #3 Chargé                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ");
             });
             reint.setOnAction(event -> {
+                resetImage(iv);
+                resetSlider(sat,teinte,lumi,cont,colorAdjust);
+                infoEnBas.setText("Reinitialisé                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ");
+            });
+            i12.setOnAction(event -> {iv.setImage(im1);
+                infoEnBas.setText("Image #1 Chargé                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ");
+            });
+            i22.setOnAction(event -> {iv.setImage(im2);
+                infoEnBas.setText("Image #2 Chargé                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ");
+            });
+            i32.setOnAction(event -> {iv.setImage(im3);
+                infoEnBas.setText("Image #3 Chargé                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ");
+            });
+            reint2.setOnAction(event -> {
                 resetImage(iv);
                 resetSlider(sat,teinte,lumi,cont,colorAdjust);
                 infoEnBas.setText("Reinitialisé                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                 ");
